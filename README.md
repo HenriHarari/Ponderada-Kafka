@@ -48,33 +48,4 @@ Em outro terminal: python consumer.py.
 Comunique-se entre o produtor e o consumidor.
 Encerre com CTRL + C e docker-compose down.
 
-``version: "3"``
-
-``services:``
-``  meu_zookeeper:``
- ``   image: bitnami/zookeeper:latest``
-``    ports:``
-``      - 2181:2181``
-``    environment:``
- ``     - ALLOW_ANONYMOUS_LOGIN=yes``
-
- `` meu_kafka:``
-   `` image: bitnami/kafka:latest``
-``    restart: on-failure``
-    ``ports:``
-      ``- 9092:9092``
-    ``volumes:``
-      ``- kafka-dados:/bitnami/kafka``
-    ``environment:``
-      ``- KAFKA_BROKER_ID=1``
-      ``- KAFKA_LISTENERS=PLAINTEXT://:9092``
-      ``- KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092``
-      ``- KAFKA_ZOOKEEPER_CONNECT=meu_zookeeper:2181``
-      ``- KAFKA_NUM_PARTITIONS=3``
-      ``- KAFKA_ALLOW_PLAINTEXT_LISTENER=yes``
-    ``depends_on:``
-      ``- meu_zookeeper``
-
-``volumes:
-  ``kafka-dados:``
 
